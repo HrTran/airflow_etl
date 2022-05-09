@@ -23,6 +23,12 @@ docker-compose -f postgres.yaml up -d
 ```bash
 ./init/env.sh
 ```
+* Now find the DAG named `simple_taskflow_api_etl` and trigger it. 
+## DAGs
+All the DAGs are in the folder `dags`, and the configuration files are store in folder `entries`. Each configuration 
+file is corresponding to a DAG.
+
+Config entries followed by this [entries_guide](entries/entries_guide.md)
 
 ## Additional info
 * Running CLI commands
@@ -46,5 +52,3 @@ docker-compose down --volumes --rmi all
 ```bash
 docker-compose -f airflow.yaml --scale airflow-worker=3 up -d
 ```
-## DAGs
-Config entries for DAGs: [entries_guide.md](entries/entries_guide.md)

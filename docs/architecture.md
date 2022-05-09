@@ -25,6 +25,7 @@ running over YARN cluster is recommended for dealing with it.
 
 With Spark, we can facilitate the distributed task and handle data skew.  
 
+![spark](../images/spark_architecture.png)
 
 ## The current implementation
 ![current](../images/current_architecture.png)
