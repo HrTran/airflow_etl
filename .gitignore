@@ -1,0 +1,14 @@
+# environment
+venv/
+.env
+
+# airflow
+logs/
+plugins/
+
+# miscellaneous
+__pycache__/
+build/
+common_utils.egg-info/
+.idea/
+deploy.sh

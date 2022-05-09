@@ -1,0 +1,33 @@
+{
+	"input": [
+		{
+			"type": "postgres",
+			"db": "source_db",
+			"select": [
+				{
+					"table": "Persons",
+					"fields": [
+						{
+							"name": ["id", "t_01", "t_02", "t_03", "n_01"]
+						}
+					]
+				}
+			]
+		}
+	],
+	"transformation": [
+		{
+			"table": "Persons",
+			"operations": ["total = t_01 + t_02 + t_03"]
+		}
+	],
+	"output": [
+		{
+			"type": "postgres",
+			"db": "target_db",
+			"table": "Persons",
+			"write_mode": "append"
+		}
+	],
+	"isDisable": false
+}

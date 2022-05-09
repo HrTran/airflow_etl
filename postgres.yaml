@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  source_db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - source:/var/lib/postgresql/data
+      - ./init/create_source_tables.sql:/docker-entrypoint-initdb.d/init.sql
+
+  target_db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5433:5432'
+    volumes:
+      - target:/var/lib/postgresql/data
+      - ./init/create_target_tables.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  source:
+    driver: local
+  target:
+    driver: local
