@@ -4,6 +4,10 @@ ETL practice with Airflow, Docker Compose
 ## Architecture
 For more details, please take a look at [architecture](docs/architecture.md)
 
+## Information
+* Install [Docker](https://www.docker.com/)
+* Install [Docker Compose](https://docs.docker.com/compose/install/)
+
 ## Deployment
 * Initialize environment
 ```bash
@@ -30,6 +34,24 @@ file is corresponding to a DAG.
 
 Config entries followed by this [entries_guide](entries/entries_guide.md)
 
+## Configuring connections
+Add the following line to `./init/env.sh` 
+```bash
+./airflow.sh airflow connections add <source-name> \
+    --conn-json '{
+        "conn_type": "<conn-type>",
+        "login": "<username>",
+        "password": "<password>",
+        "host": "<host>",
+        "port": <port>,
+        "schema": "<schema>",
+        "extra": {
+            "table": "<table-name>",
+            "database": "<db-name>"
+        }
+    }'
+```
+
 ## Additional info
 * Running CLI commands
 ```bash
@@ -52,3 +74,7 @@ docker-compose down --volumes --rmi all
 ```bash
 docker-compose -f airflow.yaml --scale airflow-worker=3 up -d
 ```
+
+## Contact me
+:mailbox: Mail: [trantathuy.hust@gmail.com](mailto:trantathuy.hust@gmail.com)  
+:technologist: Linkedin: [Huy Tran](https://www.linkedin.com/in/trantathuy/)
