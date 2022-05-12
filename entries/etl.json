@@ -5,7 +5,7 @@
 			"db": "source_db",
 			"select": [
 				{
-					"table": "Persons",
+					"table": "persons",
 					"fields": [
 						{
 							"name": ["id", "t_01", "t_02", "t_03", "n_01"]
@@ -17,7 +17,7 @@
 	],
 	"transformation": [
 		{
-			"table": "Persons",
+			"table": "persons",
 			"operations": ["total = t_01 + t_02 + t_03"]
 		}
 	],
@@ -25,7 +25,7 @@
 		{
 			"type": "postgres",
 			"db": "target_db",
-			"table": "Persons",
+			"table": "persons",
 			"write_mode": "append"
 		}
 	],

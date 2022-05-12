@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Persons (
+CREATE TABLE IF NOT EXISTS persons (
     id SERIAL PRIMARY KEY,
     t_01 int,
     t_02 int,	

@@ -3,14 +3,14 @@
 
 ./airflow.sh airflow connections add 'source_db' \
     --conn-json '{
-        "conn_type": "Postgres",
+        "conn_type": "postgres",
         "login": "postgres",
         "password": "postgres",
         "host": "airflow_etl_source_db_1",
         "port": 5432,
         "schema": "public",
         "extra": {
-            "table": "Persons",
+            "table": "persons",
             "database": "postgres"
         }
     }'
@@ -21,10 +21,10 @@
         "login": "postgres",
         "password": "postgres",
         "host": "airflow_etl_target_db_1",
-        "port": 5433,
+        "port": 5432,
         "schema": "public",
         "extra": {
-            "table": "Persons",
+            "table": "persons",
             "database": "postgres"
         }
     }'

@@ -27,7 +27,64 @@ docker-compose -f postgres.yaml up -d
 ```bash
 ./init/env.sh
 ```
-* Now find the DAG named `simple_taskflow_api_etl` and trigger it. 
+
+## Run the Example
+* Now login to Airflow Webserver UI at http://localhost:5884 using user `airflow` and password `airflow` 
+  * Find the DAG named `simple_taskflow_api_etl`, then trigger it.
+    * Open any SQL editor such as [DBeaver](https://dbeaver.io/), add new PostgreSQL connection with following field:
+      * source_db:
+        ```bash
+        user: postgres
+        password: postgres
+        database: postgres
+        host: localhost
+        port: 5432
+        ```
+      * target_db:
+        ```bash
+        user: postgres
+        password: postgres
+        database: postgres
+        host: localhost
+        port: 5433
+        ```
+    * Using `psql` — PostgreSQL interactive terminal
+      * Install on Ubuntu and Debian
+        ```bash
+        sudo apt-get update
+        sudo apt-get install postgresql-client
+        ```
+      * Open 2 terminals, one for `source_db` and one for `target_db`
+        ```bash
+        [Terminal 1]
+        $ psql -h localhost -d postgres -U postgres -p 5432
+        Password for user postgres: postgres
+        psql (12.10 (Ubuntu 12.10-0ubuntu0.20.04.1), server 14.1)
+        WARNING: psql major version 12, server major version 14.
+                 Some psql features might not work.
+        Type "help" for help.
+  
+        postgres=# select count(*) from public.persons;
+         count 
+        -------
+          5000
+        (1 row)
+        ```
+        ```bash
+        [Terminal 2]
+        $ psql -h localhost -d postgres -U postgres -p 5433
+        Password for user postgres: postgres
+        psql (12.10 (Ubuntu 12.10-0ubuntu0.20.04.1), server 14.1)
+        WARNING: psql major version 12, server major version 14.
+                 Some psql features might not work.
+        Type "help" for help.
+  
+        postgres=# select count(*) from public.persons;
+         count 
+        -------
+          5000
+        (1 row)
+        ```
 ## DAGs
 All the DAGs are in the folder `dags`, and the configuration files are store in folder `entries`. Each configuration 
 file is corresponding to a DAG.
